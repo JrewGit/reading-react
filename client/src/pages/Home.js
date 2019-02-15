@@ -1,17 +1,18 @@
 import React, { Component } from "react";
+import Jumbotron from "../components/Jumbotron";
 import Card from "../components/Card";
 import Form from "../components/Form";
 import Book from "../components/Book";
+import Footer from "../components/Footer";
 import API from "../utils/API";
 import { Col, Row, Container } from "../components/Grid";
 import { List } from "../components/List";
 
-
-class mainPage extends Component {
+class Home extends Component {
   state = {
     books: [],
     q: "",
-    message: "Look up a book!"
+    message: "Search For A Book To Begin!"
   };
 
   handleInputChange = event => {
@@ -57,18 +58,18 @@ class mainPage extends Component {
 
   render() {
     return (
-      <Container className="mainBody">
+      <Container>
         <Row>
           <Col size="md-12">
-            <div>
+            <Jumbotron>
               <h1 className="text-center">
                 <strong>Reading React</strong>
               </h1>
-              <h2 className="text-center">Find and Save Books You Like!</h2>
-            </div>
+              <h2 className="text-center">Search for and Save Books that you like!</h2>
+            </Jumbotron>
           </Col>
           <Col size="md-12">
-            <Card title="Book Search">
+            <Card title="Book Search" icon="far fa-book">
               <Form
                 handleInputChange={this.handleInputChange}
                 handleFormSubmit={this.handleFormSubmit}
@@ -86,6 +87,7 @@ class mainPage extends Component {
                     <Book
                       key={book.id}
                       title={book.volumeInfo.title}
+                      subtitle={book.volumeInfo.subtitle}
                       link={book.volumeInfo.infoLink}
                       authors={book.volumeInfo.authors.join(", ")}
                       description={book.volumeInfo.description}
@@ -107,9 +109,10 @@ class mainPage extends Component {
             </Card>
           </Col>
         </Row>
+        <Footer />
       </Container>
     );
   }
 }
 
-export default mainPage;
+export default Home;

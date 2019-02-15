@@ -1,6 +1,8 @@
 const router = require("express").Router();
-const googleControl = require("../../controllers/googleControl");
+const googleController = require("../../controllers/googleController");
 
-router.route("/").get(googleControl.findAll);
+router
+  .route("/")
+  .get(googleController.findAll);
 
 module.exports = router;

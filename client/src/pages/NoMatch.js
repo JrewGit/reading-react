@@ -1,14 +1,20 @@
 import React from "react";
 import { Col, Row, Container } from "../components/Grid";
+import Jumbotron from "../components/Jumbotron";
 
 function NoMatch() {
   return (
-    <Container>
+    <Container fluid>
       <Row>
         <Col size="md-12">
-          <div>
+          <Jumbotron>
             <h1 className="text-center">404 Page Not Found</h1>
-          </div>
+            <h1 className="text-center">
+              <span>
+                Try Again!
+              </span>
+            </h1>
+          </Jumbotron>
         </Col>
       </Row>
     </Container>

@@ -12,18 +12,21 @@ module.exports = {
         results.data.items.filter(
           result =>
             result.volumeInfo.title &&
+            result.volumeInfo.infoLink &&
             result.volumeInfo.authors &&
             result.volumeInfo.description &&
             result.volumeInfo.imageLinks &&
             result.volumeInfo.imageLinks.thumbnail
         )
-      ).then(booksApis =>
-        db.Book.find().then(booksDbs =>
-          booksApis.filter(booksApi =>
-            booksDbs.every(booksDb => booksDb.googleId.toString() !== booksApi.id)
+      )
+      .then(apiBooks =>
+        db.Book.find().then(dbBooks =>
+          apiBooks.filter(apiBook =>
+            dbBooks.every(dbBook => dbBook.googleId.toString() !== apiBook.id)
           )
         )
-      ).then(books => res.json(books))
-      .catch(err => res.json(err));
+      )
+      .then(books => res.json(books))
+      .catch(err => res.status(422).json(err));
   }
 };

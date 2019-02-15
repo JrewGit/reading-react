@@ -12,7 +12,7 @@ function Form({ q, handleInputChange, handleFormSubmit }) {
           id="Title"
           type="text"
           value={q}
-          placeholder="Map of Days"
+          placeholder="The Alchemist"
           name="q"
           onChange={handleInputChange}
           required

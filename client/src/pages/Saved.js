@@ -1,11 +1,13 @@
 import React, { Component } from "react";
+import Jumbotron from "../components/Jumbotron";
 import Card from "../components/Card";
 import Book from "../components/Book";
+import Footer from "../components/Footer";
 import API from "../utils/API";
 import { Col, Row, Container } from "../components/Grid";
 import { List } from "../components/List";
 
-class savedPage extends Component {
+class Saved extends Component {
   state = {
     books: []
   };
@@ -33,17 +35,17 @@ class savedPage extends Component {
       <Container>
         <Row>
           <Col size="md-12">
-            <div>
+            <Jumbotron>
               <h1 className="text-center">
                 <strong>Reading React</strong>
               </h1>
-              <h2 className="text-center">Find and Save Books You Like!</h2>
-            </div>
+              <h2 className="text-center">Search for and Save Books of Interest.</h2>
+            </Jumbotron>
           </Col>
         </Row>
         <Row>
           <Col size="md-12">
-            <Card title="Saved Books">
+            <Card title="Saved Books" icon="download">
               {this.state.books.length ? (
                 <List>
                   {this.state.books.map(book => (
@@ -58,6 +60,7 @@ class savedPage extends Component {
                       Button={() => (
                         <button
                           onClick={() => this.handleBookDelete(book._id)}
+                          className="btn btn-danger ml-2"
                         >
                           Delete
                         </button>
@@ -71,9 +74,10 @@ class savedPage extends Component {
             </Card>
           </Col>
         </Row>
+        <Footer />
       </Container>
     );
   }
 }
 
-export default savedPage;
+export default Saved;
